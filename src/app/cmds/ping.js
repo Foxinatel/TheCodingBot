@@ -12,7 +12,7 @@ module.exports = {
     const eFields = [];
 
     await app.client.shard.broadcastEval(client => [client.shard.ids, client.ws.status, client.ws.ping, client.guilds.cache.size]).then((results) => {
-      results.map((data) => {
+      results.foreach((data) => {
         eFields.push(
           {
             name: `Shard ${data[0]}/${app.client.shard.count}`,

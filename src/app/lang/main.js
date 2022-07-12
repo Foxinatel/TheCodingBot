@@ -3,7 +3,7 @@
     https://tcb.nekos.tech
 */
 
-class main {
+class Main {
   constructor () {
     this.app = null;
   }
@@ -48,7 +48,7 @@ class main {
       if (!app.config.langs[lang]) {
         for (let i = 0; i < Object.keys(app.config.langs).length; i++) {
           const l = app.config.langs[Object.keys(app.config.langs)[i]];
-          if (lang == l.metadata.name || lang == l.metadata.full_name) {
+          if (lang === l.metadata.name || lang === l.metadata.full_name) {
             return l.translations[line] // Try the language first
                     || app.config.langs.English.translations[line] // Then try English
                     || line // If all fails, return the line
@@ -73,4 +73,4 @@ class main {
 }
 
 // module.exports = main;
-module.exports = function () { return new main(); };
+module.exports = function () { return new Main(); };

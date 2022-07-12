@@ -16,7 +16,7 @@ module.exports = {
     try {
       app.logger.info('SYS', `Found ${app.client.guilds.cache.size} servers to cache. [It may be spammy!!]`);
 
-      const promises = app.client.guilds.cache.map(guild => {
+      const promises = app.client.guilds.cache.foreach(guild => {
         app.logger.debug('SYS', `[${guild.id}] --> Cache members...`);
         if (guild.available) guild.members.fetch(true);
         else Promise.resolve();
@@ -42,6 +42,7 @@ module.exports = {
       } catch (err) {
         app.logger.error('SYS', `Failed to register to slash commands! ${err}\n${err.stack}`);
       } finally {
+        // Should this be empty?
       };
     };
   }

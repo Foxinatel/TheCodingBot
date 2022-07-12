@@ -3,7 +3,7 @@
     https://tcb.nekos.tech
 */
 
-class main {
+class Main {
   constructor () {
     this.app = null;
   }
@@ -16,17 +16,17 @@ class main {
     if (module == null) { Object.keys(require.cache).forEach(function (key) { delete require.cache[key]; }); } else { delete require.cache[module]; }
   };
 
-  convertTimestamp = (unix_timestamp, getDate, bigHour) => {
+  convertTimestamp = (unixTimestamp, getDate, bigHour) => {
     if (bigHour == null) bigHour = false;
 
-    const date = new Date(unix_timestamp * 1); // Create Date from timestamp
+    const date = new Date(unixTimestamp * 1); // Create Date from timestamp
 
     const hours = date.getHours(); // Hours part from the timestamp
     const minutes = '0' + date.getMinutes(); // Minutes part from the timestamp
     const seconds = '0' + date.getSeconds(); // Seconds part from the timestamp
 
     // Will display time in hh:mm:ss format
-    let formattedTime = ((bigHour) ? ((hours > 12) ? (hours - 12) : (hours == 0) ? 12 : hours) : hours) + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) + ((bigHour) ? ((hours < 12) ? ' AM' : ' PM') : '');
+    let formattedTime = ((bigHour) ? ((hours > 12) ? (hours - 12) : (hours === 0) ? 12 : hours) : hours) + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) + ((bigHour) ? ((hours < 12) ? ' AM' : ' PM') : '');
 
     if (getDate) {
       const dd = String(date.getDate()).padStart(2, '0');
@@ -111,10 +111,11 @@ class main {
         }
       };
     };
-    if (exitCode || exitCode === 0) {}
+    // The next line is a no-op?
+    // if (exitCode || exitCode === 0) {}
     if (options.exit) process.exit();
   };
 }
 
 // module.exports = main;
-module.exports = function () { return new main(); };
+module.exports = function () { return new Main(); };

@@ -12,23 +12,20 @@ module.exports = {
     minor: 0,
     revision: 0,
     buildType: 'A',
-    toString: function () {
-      const major = app.version.major;
-      const minor = app.version.minor;
-      const revision = app.version.revision;
-      return major + '.' + minor + '.' + revision;
+    toString: () => {
+      const major = this.version.major;
+      const minor = this.version.minor;
+      const revision = this.version.revision;
+      return `${major}.${minor}.${revision}`;
     },
-    toBuildString: function () {
-      let buildType = app.version.buildType;
-      if (buildType == 'A') buildType = 'ALPHA';
-      else if (buildType == 'B') buildType = 'BETA';
-      else if (buildType == 'R') buildType = 'RELEASE';
-
-      return buildType;
+    toBuildString: () => {
+      switch (this.version.buildType) {
+        case 'A': return 'ALPHA';
+        case 'B': return 'BETA';
+        case 'R': return 'RELEASE';
+      }
     },
-    toFullString: function () {
-      return app.version.toString() + ' ' + app.version.toBuildString();
-    }
+    toFullString: () => `${this.version.toString()} ${this.version.toBuildString}`
   },
   dependencies: [
     { name: 'fs', required: true },

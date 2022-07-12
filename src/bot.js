@@ -11,26 +11,22 @@ async function bot (debug) {
   try {
     console.log(` -- Starting as of ${new Date(startTime).toString()} -- `);
 
-    // Change directory
-    try {
-      if (process.cwd().split('\\').slice(-1) != 'src') { // attempt to change into 'src'
-        process.chdir(process.cwd() + '/src');
-      }
-    } catch (Ex) {}; // Assume it's okay to continue.
+    // change into /src
+    const { dirname } = require('path');
+    const appDir = dirname(require.main.filename);
+    process.chdir(appDir);
 
     // Import ourselves and other functions
-    const app = require(`${process.cwd()}/app/cfg/app.js`);
+    const app = require('./app/cfg/app.js');
     app.debugMode = debug;
-    app.config = require(`${process.cwd()}/app/cfg/config.js`);
-    app.functions = require(`${process.cwd()}/app/func/main.js`)();
+    app.config = require('./app/cfg/config.js');
+    app.functions = require('./app/func/main.js')();
     app.functions.setContext(app);
 
     process.stdin.resume();
 
     process.on('exit', app.functions.exitHandler.bind(null, { cleanup: true }));
-
     process.on('SIGINT', app.functions.exitHandler.bind(null, { exit: true }));
-
     process.on('SIGUSR1', app.functions.exitHandler.bind(null, { exit: true }));
     process.on('SIGUSR2', app.functions.exitHandler.bind(null, { exit: true }));
 
