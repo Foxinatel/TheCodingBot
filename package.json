@@ -28,5 +28,12 @@
   "bugs": {
     "url": "https://github.com/NetroCorp/TheCodingBot/issues"
   },
-  "homepage": "https://tcb.nekos.tech/"
+  "homepage": "https://tcb.nekos.tech/",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0"
+  }
 }
