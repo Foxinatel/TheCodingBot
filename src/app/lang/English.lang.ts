@@ -3,16 +3,19 @@
   https://tcb.nekos.tech
 */
 
-module.exports = {
-  metadata: {
+import { Language } from 'src/types/Language';
+
+export default class English implements Language {
+  metadata = {
     name: 'English',
     full_name: 'English (en_US)',
     description: 'English - United States',
     langCode: 'en_US',
     translator: 'Aisuruneko',
     version: '1.0.0.0'
-  },
-  translations: {
+  };
+
+  translations = {
 
     // Errors
     'errors.commands.genric': 'That command does not exist or is no longer available.',
@@ -36,5 +39,5 @@ module.exports = {
     'commands.ping.ping': 'Ping',
     'commands.ping.servers': 'Servers',
     'commands.ping.latency': 'Latency'
-  }
+  };
 };

@@ -3,16 +3,19 @@
   https://tcb.nekos.tech
 */
 
-module.exports = {
-  metadata: {
+import { Language } from 'src/types/Language';
+
+export default class Japanese implements Language {
+  metadata = {
     name: 'Japanese',
     full_name: 'Japanese (ja_JP)',
     description: '日本語 - 日本',
     langCode: 'ja_JP',
     translator: 'Aisuruneko',
     version: '1.0.0.0'
-  },
-  translations: {
+  };
+
+  translations = {
 
     // Errors
     'errors.commands.genric': 'そのコマンドは存在しないか、使用できなくなりました。',
@@ -36,5 +39,5 @@ module.exports = {
     'commands.ping.ping': 'Ping',
     'commands.ping.servers': 'サーバー',
     'commands.ping.latency': 'レイテンシー'
-  }
+  };
 };
